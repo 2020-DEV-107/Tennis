@@ -12,6 +12,11 @@ public class TennisSimulator {
 
     public static void main(String[] args) {
         TennisInterface tennis = startGameWithTwoPlayers();
+        playTennisGame(tennis);
+        scanner.close();
+    }
+
+    private static void playTennisGame(TennisInterface tennis) {
         System.out.println("\n Starting New Game!!!!");
         while (tennis.getScore() != null && !tennis.getScore().contains("Winner")) {
             System.out.print("\n Enter Name of player who has won next point --> ");
@@ -21,12 +26,15 @@ public class TennisSimulator {
             } catch (TennisException e) {
                 System.out.println("Error occurred: " + e.getMessage());
             }
-            System.out.println("#####################################################");
-            System.out.println("Current Score --> " + tennis.getScore());
-            System.out.println("#####################################################");
+            printTennisScore(tennis);
         }
         System.out.println("\n Game over!!!");
-        scanner.close();
+    }
+
+    private static void printTennisScore(TennisInterface tennis) {
+        System.out.println("#####################################################");
+        System.out.println("Current Score --> " + tennis.getScore());
+        System.out.println("#####################################################");
     }
 
     private static TennisInterface startGameWithTwoPlayers() {
