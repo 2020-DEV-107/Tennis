@@ -45,6 +45,8 @@ public class Tennis implements TennisInterface {
         String score;
         if (isDeuce()) {
             score = TennisConstants.TEXT_DEUCE;
+        } else if (Math.abs(secondPlayer.getPoints() - firstPlayer.getPoints()) == TennisConstants.POINT_ONE && (secondPlayer.getPoints() > TennisConstants.POINT_THREE || firstPlayer.getPoints() > TennisConstants.POINT_THREE)) {
+            return TennisConstants.TEXT_ADVANTAGE + TennisConstants.TEXT_COLON + secondPlayer.getName();
         } else {
             score = formatScore();
         }
