@@ -1,6 +1,7 @@
 package com.bnppf.kata;
 
 import com.bnppf.kata.game.Tennis;
+import com.bnppf.kata.interfaces.TennisInterface;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ public class TennisTest {
     private static final String ALL = "All";
     private static final String FIRST_PLAYER_NAME = "Serena Williams";
     private static final String SECOND_PLAYER_NAME = "Maria Sharapova";
-    private Tennis tennis;
+    private TennisInterface tennis;
 
     @Before
     public void initialSetup() {
