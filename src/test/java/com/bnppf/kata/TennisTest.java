@@ -1,20 +1,24 @@
 package com.bnppf.kata;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TennisTest {
+    private Tennis tennis;
+
+    @Before
+    public void initialSetup() {
+        tennis = new Tennis("Serena Williams" , "Maria Sharapova");
+    }
+
     @Test
     public void initializeNewTennisGame() {
-        Tennis tennis = new Tennis("Serena Williams" , "Maria Sharapova");
-
         Assert.assertNotNull(tennis);
     }
 
     @Test
     public void startNewGameWithTwoPlayers() {
-        Tennis tennis = new Tennis("Serena Williams" , "Maria Sharapova");
-
         Assert.assertEquals("Serena Williams" , tennis.getFirstPlayerName());
         Assert.assertEquals("Maria Sharapova" , tennis.getSecondPlayerName());
     }
