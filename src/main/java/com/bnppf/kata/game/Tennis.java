@@ -27,7 +27,7 @@ public class Tennis implements TennisInterface {
 
     @Override
     public void increasePlayerScore(String pointScoringPlayer) {
-        if (null == pointScoringPlayer || "".equals(pointScoringPlayer) || !(pointScoringPlayer.equalsIgnoreCase(firstPlayerName) || pointScoringPlayer.equalsIgnoreCase(secondPlayerName))) {
+        if (!isValidPlayerName(pointScoringPlayer)) {
             throw new TennisException(TennisConstants.TEXT_INVALID_PLAYER);
         }
         if (pointScoringPlayer.equalsIgnoreCase(firstPlayerName)) {
@@ -50,5 +50,17 @@ public class Tennis implements TennisInterface {
     @Override
     public String getScore() {
         return TennisConstants.TEXT_LOVE + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL;
+    }
+
+    private boolean isValidPlayerName(String playerName) {
+        return !isPlayerNullOrEmpty(playerName) && isFirstOrSecondPlayer(playerName);
+    }
+
+    private boolean isPlayerNullOrEmpty(String playerName) {
+        return null == playerName || "".equals(playerName);
+    }
+
+    private boolean isFirstOrSecondPlayer(String playerName) {
+        return playerName.equalsIgnoreCase(getFirstPlayerName()) || playerName.equalsIgnoreCase(getSecondPlayerName());
     }
 }
