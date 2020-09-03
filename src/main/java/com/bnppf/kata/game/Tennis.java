@@ -43,16 +43,30 @@ public class Tennis implements TennisInterface {
     @Override
     public String getScore() {
         String score;
-        if (isBothPlayersScoredSame() && (firstPlayer.getPoints() > TennisConstants.POINT_TWO || secondPlayer.getPoints() > TennisConstants.POINT_TWO)) {
+        if (isDeuce()) {
             score = TennisConstants.TEXT_DEUCE;
         } else {
-            TennisScoreEnum firstPlayerScoreEnum = getTennisFormatScore(firstPlayer.getPoints());
-            TennisScoreEnum secondPlayerScoreEnum = getTennisFormatScore(secondPlayer.getPoints());
-            score = isBothPlayersScoredSame() ?
-                    firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
-                    firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_COLON + secondPlayerScoreEnum.fetchScore();
+            score = formatScore();
         }
         return score;
+    }
+
+    private String formatScore() {
+        String score;
+        TennisScoreEnum firstPlayerScoreEnum = getTennisFormatScore(firstPlayer.getPoints());
+        TennisScoreEnum secondPlayerScoreEnum = getTennisFormatScore(secondPlayer.getPoints());
+        score = isBothPlayersScoredSame() ?
+                firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
+                firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_COLON + secondPlayerScoreEnum.fetchScore();
+        return score;
+    }
+
+    private boolean isDeuce() {
+        return isBothPlayersScoredSame() && isAnyPlayerBeyondThirty();
+    }
+
+    private boolean isAnyPlayerBeyondThirty() {
+        return firstPlayer.getPoints() > TennisConstants.POINT_TWO || secondPlayer.getPoints() > TennisConstants.POINT_TWO;
     }
 
     private boolean isBothPlayersScoredSame() {
