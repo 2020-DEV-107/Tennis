@@ -1,4 +1,4 @@
-package com.bnppf.kata;
+package com.bnppf.kata.game;
 
 import com.bnppf.kata.constants.TennisConstants;
 

@@ -1,5 +1,6 @@
 package com.bnppf.kata;
 
+import com.bnppf.kata.game.Tennis;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
