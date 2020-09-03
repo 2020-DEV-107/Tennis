@@ -16,4 +16,8 @@ public class Tennis {
     public String getSecondPlayerName() {
         return secondPlayerName;
     }
+
+    public String getScore() {
+        return "Love All";
+    }
 }
