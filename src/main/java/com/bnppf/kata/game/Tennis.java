@@ -3,8 +3,10 @@ package com.bnppf.kata.game;
 import com.bnppf.kata.constants.TennisConstants;
 import com.bnppf.kata.exceptions.TennisException;
 import com.bnppf.kata.interfaces.TennisInterface;
+import org.apache.log4j.Logger;
 
 public class Tennis implements TennisInterface {
+    private final Logger logger = Logger.getLogger(Tennis.class);
     private final String firstPlayerName;
     private final String secondPlayerName;
     private int firstPlayerScore;
@@ -28,6 +30,7 @@ public class Tennis implements TennisInterface {
     @Override
     public void increasePlayerScore(String pointScoringPlayer) {
         if (!isValidPlayerName(pointScoringPlayer)) {
+            logger.error(TennisConstants.TEXT_INVALID_PLAYER);
             throw new TennisException(TennisConstants.TEXT_INVALID_PLAYER);
         }
         if (pointScoringPlayer.equalsIgnoreCase(firstPlayerName)) {
