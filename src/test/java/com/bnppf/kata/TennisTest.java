@@ -5,11 +5,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TennisTest {
+    private static final String LOVE = "Love";
+    private static final String SPACE = " ";
+    private static final String ALL = "All";
+    private static final String FIRST_PLAYER_NAME = "Serena Williams";
+    private static final String SECOND_PLAYER_NAME = "Maria Sharapova";
     private Tennis tennis;
 
     @Before
     public void initialSetup() {
-        tennis = new Tennis("Serena Williams" , "Maria Sharapova");
+        tennis = new Tennis(FIRST_PLAYER_NAME , SECOND_PLAYER_NAME);
     }
 
     @Test
@@ -19,12 +24,12 @@ public class TennisTest {
 
     @Test
     public void startNewGameWithTwoPlayers() {
-        Assert.assertEquals("Serena Williams" , tennis.getFirstPlayerName());
-        Assert.assertEquals("Maria Sharapova" , tennis.getSecondPlayerName());
+        Assert.assertEquals(FIRST_PLAYER_NAME , tennis.getFirstPlayerName());
+        Assert.assertEquals(SECOND_PLAYER_NAME , tennis.getSecondPlayerName());
     }
 
     @Test
     public void initialScoreShouldBeLoveAll() {
-        Assert.assertEquals("Love All" , tennis.getScore());
+        Assert.assertEquals(LOVE + SPACE + ALL , tennis.getScore());
     }
 }
