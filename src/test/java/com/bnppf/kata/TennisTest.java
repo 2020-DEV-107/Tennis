@@ -1,10 +1,13 @@
 package com.bnppf.kata;
 
+import com.bnppf.kata.exceptions.TennisException;
 import com.bnppf.kata.game.Tennis;
 import com.bnppf.kata.interfaces.TennisInterface;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class TennisTest {
     private static final String LOVE = "Love";
@@ -12,8 +15,13 @@ public class TennisTest {
     private static final String ALL = "All";
     private static final String FIRST_PLAYER_NAME = "Serena Williams";
     private static final String SECOND_PLAYER_NAME = "Maria Sharapova";
+    private static final String INVALID_PLAYER_NAME = "Invalid Player Name";
+    private static final String RANDOM_PLAYER = "Random Player";
     private static final int ONE_POINT = 1;
     private TennisInterface tennis;
+
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
 
     @Before
     public void initialSetup() {
@@ -48,5 +56,13 @@ public class TennisTest {
         tennis.increasePlayerScore(SECOND_PLAYER_NAME);
 
         Assert.assertEquals(ONE_POINT , tennis.getSecondPlayerScore());
+    }
+
+    @Test
+    public void shouldNotAllowInvalidPlayerName() {
+        exceptionRule.expect(TennisException.class);
+        exceptionRule.expectMessage(INVALID_PLAYER_NAME);
+
+        tennis.increasePlayerScore(RANDOM_PLAYER);
     }
 }
