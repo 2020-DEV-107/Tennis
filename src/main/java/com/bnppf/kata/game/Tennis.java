@@ -52,7 +52,25 @@ public class Tennis implements TennisInterface {
 
     @Override
     public String getScore() {
-        return TennisConstants.TEXT_LOVE + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL;
+        String score;
+        String firstPlayerTennisScore = getTennisFormatScore(firstPlayerScore);
+        String secondPlayerTennisScore = getTennisFormatScore(secondPlayerScore);
+        if (firstPlayerScore == secondPlayerScore) {
+            score = firstPlayerTennisScore + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL;
+        } else {
+            score = firstPlayerTennisScore + TennisConstants.TEXT_COLON + secondPlayerTennisScore;
+        }
+        return score;
+    }
+
+    private String getTennisFormatScore(int points) {
+        String tennisFormatScore = "";
+        if (points == TennisConstants.POINT_ZERO) {
+            tennisFormatScore = TennisConstants.TEXT_LOVE;
+        } else if (points == TennisConstants.POINT_ONE) {
+            tennisFormatScore = TennisConstants.TEXT_FIFTEEN;
+        }
+        return tennisFormatScore;
     }
 
     private boolean isValidPlayerName(String playerName) {
