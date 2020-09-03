@@ -43,11 +43,15 @@ public class Tennis implements TennisInterface {
     @Override
     public String getScore() {
         String score;
-        TennisScoreEnum firstPlayerScoreEnum = getTennisFormatScore(firstPlayer.getPoints());
-        TennisScoreEnum secondPlayerScoreEnum = getTennisFormatScore(secondPlayer.getPoints());
-        score = isBothPlayersScoredSame() ?
-                firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
-                firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_COLON + secondPlayerScoreEnum.fetchScore();
+        if (isBothPlayersScoredSame() && (firstPlayer.getPoints() > TennisConstants.POINT_TWO || secondPlayer.getPoints() > TennisConstants.POINT_TWO)) {
+            score = TennisConstants.TEXT_DEUCE;
+        } else {
+            TennisScoreEnum firstPlayerScoreEnum = getTennisFormatScore(firstPlayer.getPoints());
+            TennisScoreEnum secondPlayerScoreEnum = getTennisFormatScore(secondPlayer.getPoints());
+            score = isBothPlayersScoredSame() ?
+                    firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
+                    firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_COLON + secondPlayerScoreEnum.fetchScore();
+        }
         return score;
     }
 
