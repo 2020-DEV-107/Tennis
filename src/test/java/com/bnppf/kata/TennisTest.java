@@ -131,17 +131,23 @@ public class TennisTest {
 
     @Test
     @Parameters({
-            "3, 4" ,
-            "4, 5" ,
-            "5, 6" ,
-            "6, 7" ,
-            "14, 15" ,
-            "27, 28"
+            "3, 4," + SECOND_PLAYER_NAME ,
+            "4, 5," + SECOND_PLAYER_NAME ,
+            "5, 6," + SECOND_PLAYER_NAME ,
+            "6, 7," + SECOND_PLAYER_NAME ,
+            "14, 15," + SECOND_PLAYER_NAME ,
+            "27, 28," + SECOND_PLAYER_NAME ,
+            "4, 3," + FIRST_PLAYER_NAME ,
+            "5, 4," + FIRST_PLAYER_NAME ,
+            "6, 5," + FIRST_PLAYER_NAME ,
+            "7, 6," + FIRST_PLAYER_NAME ,
+            "15, 14," + FIRST_PLAYER_NAME ,
+            "22, 21," + FIRST_PLAYER_NAME
     })
-    public void checkForAdvantageSituationForPlayerTwo(int firstPlayerPoints , int secondPlayerPoints) {
+    public void checkAdvantageSituationForHighScorer(int firstPlayerPoints , int secondPlayerPoints, String highScoringPlayer) {
         prepareScore(firstPlayerPoints , secondPlayerPoints);
 
-        Assert.assertEquals(ADVANTAGE + COLON + SECOND_PLAYER_NAME , tennis.getScore());
+        Assert.assertEquals(ADVANTAGE + COLON + highScoringPlayer , tennis.getScore());
     }
 
     private void prepareScore(int firstPlayerPoints , int secondPlayerPoints) {
