@@ -4,18 +4,21 @@ import com.bnppf.kata.exceptions.TennisException;
 import com.bnppf.kata.game.Tennis;
 import com.bnppf.kata.interfaces.TennisInterface;
 import com.bnppf.kata.models.TennisPlayer;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 
 import java.util.stream.IntStream;
 
+@RunWith(JUnitParamsRunner.class)
 public class TennisTest {
     private static final String LOVE = "Love";
     private static final String FIFTEEN = "Fifteen";
-    private static final String THIRTY = "Thirty";
     private static final String COLON = ":";
     private static final String SPACE = " ";
     private static final String ALL = "All";
@@ -24,7 +27,6 @@ public class TennisTest {
     private static final String INVALID_PLAYER_NAME = "Invalid Player Name";
     private static final String RANDOM_PLAYER = "Random Player";
     private static final int ONE_POINT = 1;
-    private static final int TWO_POINT = 2;
     private TennisInterface tennis;
 
     @Rule
@@ -88,10 +90,21 @@ public class TennisTest {
     }
 
     @Test
-    public void scoreShouldBeThirtyFifteenIfFirstPlayerScoresTwoAndSecondPlayerScoresOnePoint() {
-        prepareScore(TWO_POINT , ONE_POINT);
+    @Parameters({
+            "0, 0, Love All" ,
+            "0, 1, Love:Fifteen" ,
+            "0, 2, Love:Thirty" ,
+            "1, 0, Fifteen:Love" ,
+            "1, 1, Fifteen All" ,
+            "1, 2, Fifteen:Thirty" ,
+            "2, 0, Thirty:Love" ,
+            "2, 1, Thirty:Fifteen" ,
+            "2, 2, Thirty All"
+    })
+    public void scoreShouldBeAsPerParameters(int firstPlayerPoints , int secondPlayerPoints , String score) {
+        prepareScore(firstPlayerPoints , secondPlayerPoints);
 
-        Assert.assertEquals(THIRTY + COLON + FIFTEEN , tennis.getScore());
+        Assert.assertEquals(score , tennis.getScore());
     }
 
     private void prepareScore(int firstPlayerPoints , int secondPlayerPoints) {
