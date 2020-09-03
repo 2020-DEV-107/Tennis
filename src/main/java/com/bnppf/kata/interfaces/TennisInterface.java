@@ -1,10 +1,10 @@
 package com.bnppf.kata.interfaces;
 
+import com.bnppf.kata.models.TennisPlayer;
+
 public interface TennisInterface {
-    String getFirstPlayerName();
-    String getSecondPlayerName();
+    TennisPlayer getFirstPlayer();
+    TennisPlayer getSecondPlayer();
     String getScore();
     void increasePlayerScore(String pointScoringPlayer);
-    int getFirstPlayerScore();
-    int getSecondPlayerScore();
 }

@@ -3,6 +3,7 @@ package com.bnppf.kata;
 import com.bnppf.kata.exceptions.TennisException;
 import com.bnppf.kata.game.Tennis;
 import com.bnppf.kata.interfaces.TennisInterface;
+import com.bnppf.kata.models.TennisPlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,7 +28,7 @@ public class TennisTest {
 
     @Before
     public void initialSetup() {
-        tennis = new Tennis(FIRST_PLAYER_NAME , SECOND_PLAYER_NAME);
+        tennis = new Tennis(new TennisPlayer(FIRST_PLAYER_NAME) , new TennisPlayer(SECOND_PLAYER_NAME));
     }
 
     @Test
@@ -37,8 +38,8 @@ public class TennisTest {
 
     @Test
     public void startNewGameWithTwoPlayers() {
-        Assert.assertEquals(FIRST_PLAYER_NAME , tennis.getFirstPlayerName());
-        Assert.assertEquals(SECOND_PLAYER_NAME , tennis.getSecondPlayerName());
+        Assert.assertEquals(FIRST_PLAYER_NAME , tennis.getFirstPlayer().getName());
+        Assert.assertEquals(SECOND_PLAYER_NAME , tennis.getSecondPlayer().getName());
     }
 
     @Test
@@ -50,14 +51,14 @@ public class TennisTest {
     public void firstPlayerScoreShouldIncreaseAfterWinningAPoint() {
         tennis.increasePlayerScore(FIRST_PLAYER_NAME);
 
-        Assert.assertEquals(ONE_POINT , tennis.getFirstPlayerScore());
+        Assert.assertEquals(ONE_POINT , tennis.getFirstPlayer().getPoints());
     }
 
     @Test
     public void secondPlayerScoreShouldIncreaseAfterWinningAPoint() {
         tennis.increasePlayerScore(SECOND_PLAYER_NAME);
 
-        Assert.assertEquals(ONE_POINT , tennis.getSecondPlayerScore());
+        Assert.assertEquals(ONE_POINT , tennis.getSecondPlayer().getPoints());
     }
 
     @Test
