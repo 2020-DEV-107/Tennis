@@ -25,18 +25,17 @@ public class Tennis implements TennisInterface {
     }
 
     @Override
-    public void increaseAPointForFirstPlayer() {
-        firstPlayerScore++;
+    public void increasePlayerScore(String pointScoringPlayer) {
+        if (pointScoringPlayer.equalsIgnoreCase(firstPlayerName)) {
+            firstPlayerScore++;
+        } else if (pointScoringPlayer.equalsIgnoreCase(secondPlayerName)) {
+            secondPlayerScore++;
+        }
     }
 
     @Override
     public int getFirstPlayerScore() {
         return firstPlayerScore;
-    }
-
-    @Override
-    public void increaseAPointForSecondPlayer() {
-        secondPlayerScore++;
     }
 
     @Override
