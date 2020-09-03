@@ -1,6 +1,7 @@
 package com.bnppf.kata.game;
 
 import com.bnppf.kata.constants.TennisConstants;
+import com.bnppf.kata.enums.TennisScoreEnum;
 import com.bnppf.kata.exceptions.TennisException;
 import com.bnppf.kata.interfaces.TennisInterface;
 import com.bnppf.kata.models.TennisPlayer;
@@ -42,11 +43,11 @@ public class Tennis implements TennisInterface {
     @Override
     public String getScore() {
         String score;
-        String firstPlayerTennisScore = getTennisFormatScore(firstPlayer.getPoints());
-        String secondPlayerTennisScore = getTennisFormatScore(secondPlayer.getPoints());
+        TennisScoreEnum firstPlayerScoreEnum = getTennisFormatScore(firstPlayer.getPoints());
+        TennisScoreEnum secondPlayerScoreEnum = getTennisFormatScore(secondPlayer.getPoints());
         score = isBothPlayersScoredSame() ?
-                firstPlayerTennisScore + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
-                firstPlayerTennisScore + TennisConstants.TEXT_COLON + secondPlayerTennisScore;
+                firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
+                firstPlayerScoreEnum.fetchScore() + TennisConstants.TEXT_COLON + secondPlayerScoreEnum.fetchScore();
         return score;
     }
 
@@ -54,18 +55,8 @@ public class Tennis implements TennisInterface {
         return firstPlayer.getPoints() == secondPlayer.getPoints();
     }
 
-    private String getTennisFormatScore(int points) {
-        String tennisFormatScore = "";
-        if (points == TennisConstants.POINT_ZERO) {
-            tennisFormatScore = TennisConstants.TEXT_LOVE;
-        } else if (points == TennisConstants.POINT_ONE) {
-            tennisFormatScore = TennisConstants.TEXT_FIFTEEN;
-        } else if (points == TennisConstants.POINT_TWO) {
-            tennisFormatScore = TennisConstants.TEXT_THIRTY;
-        }else if (points == TennisConstants.POINT_THREE) {
-            tennisFormatScore = TennisConstants.TEXT_FORTY;
-        }
-        return tennisFormatScore;
+    private TennisScoreEnum getTennisFormatScore(int points) {
+        return TennisScoreEnum.getScoreFromPoints(points);
     }
 
     private boolean isValidPlayerName(String playerName) {
