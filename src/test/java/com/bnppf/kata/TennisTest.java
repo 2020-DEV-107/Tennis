@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import java.util.stream.IntStream;
 
 public class TennisTest {
     private static final String LOVE = "Love";
@@ -78,9 +79,13 @@ public class TennisTest {
 
     @Test
     public void scoreShouldBeFifteenAllIfBothPlayerScoresFirstPoint() {
-        tennis.increasePlayerScore(FIRST_PLAYER_NAME);
-        tennis.increasePlayerScore(SECOND_PLAYER_NAME);
+        prepareScore(ONE_POINT , ONE_POINT);
 
         Assert.assertEquals(FIFTEEN + SPACE + ALL , tennis.getScore());
+    }
+
+    private void prepareScore(int firstPlayerPoints , int secondPlayerPoints) {
+        IntStream.range(0 , firstPlayerPoints).forEach(counter -> tennis.increasePlayerScore(FIRST_PLAYER_NAME));
+        IntStream.range(0 , secondPlayerPoints).forEach(counter -> tennis.increasePlayerScore(SECOND_PLAYER_NAME));
     }
 }
