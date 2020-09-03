@@ -18,3 +18,36 @@ Java Project to implement typical tennis game using test-driven development appr
 2. Apache Maven 3.3.1 or above
 3. Git
 ```
+
+## Install
+
+#### IDE
+```
+1. Clone repository 'https://github.com/2020-DEV-107/Tennis.git' from github
+2. Import Project as maven project into your IDE
+3. Navigate to maven menu and select install lifecycle
+```
+
+#### Command Prompt
+```
+1. git clone 'https://github.com/2020-DEV-107/Tennis.git'
+2. Run 'mvn clean install'
+```
+
+## Run Tests
+
+#### IDE
+```
+1. Navigate to maven menu for the project
+2. Select test lifecycle
+```
+
+#### Command Prompt
+```
+2. Run 'mvn test'
+```
+
+## Run Application
+```
+1. Run com.bnppf.kata.TennisSimulator class as java application
+2. Follow the instruction in console to play the game
