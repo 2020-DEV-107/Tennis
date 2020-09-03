@@ -160,7 +160,15 @@ public class TennisTest {
             "7, 5," + FIRST_PLAYER_NAME ,
             "8, 6," + FIRST_PLAYER_NAME ,
             "15, 13," + FIRST_PLAYER_NAME ,
-            "22, 20," + FIRST_PLAYER_NAME
+            "22, 20," + FIRST_PLAYER_NAME ,
+            "0, 4," + SECOND_PLAYER_NAME ,
+            "1, 4," + SECOND_PLAYER_NAME ,
+            "2, 4," + SECOND_PLAYER_NAME ,
+            "3, 5," + SECOND_PLAYER_NAME ,
+            "4, 6," + SECOND_PLAYER_NAME ,
+            "5, 7," + SECOND_PLAYER_NAME ,
+            "13, 15," + SECOND_PLAYER_NAME ,
+            "20, 22," + SECOND_PLAYER_NAME
     })
     public void shouldReturnWinningPlayer(int firstPlayerPoints , int secondPlayerPoints , String gameWinningPlayer) {
         prepareScore(firstPlayerPoints , secondPlayerPoints);
