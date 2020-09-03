@@ -44,12 +44,14 @@ public class Tennis implements TennisInterface {
         String score;
         String firstPlayerTennisScore = getTennisFormatScore(firstPlayer.getPoints());
         String secondPlayerTennisScore = getTennisFormatScore(secondPlayer.getPoints());
-        if (firstPlayer.getPoints() == secondPlayer.getPoints()) {
-            score = firstPlayerTennisScore + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL;
-        } else {
-            score = firstPlayerTennisScore + TennisConstants.TEXT_COLON + secondPlayerTennisScore;
-        }
+        score = isBothPlayersScoredSame() ?
+                firstPlayerTennisScore + TennisConstants.TEXT_SPACE + TennisConstants.TEXT_ALL :
+                firstPlayerTennisScore + TennisConstants.TEXT_COLON + secondPlayerTennisScore;
         return score;
+    }
+
+    private boolean isBothPlayersScoredSame() {
+        return firstPlayer.getPoints() == secondPlayer.getPoints();
     }
 
     private String getTennisFormatScore(int points) {
