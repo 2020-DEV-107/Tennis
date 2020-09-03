@@ -62,6 +62,8 @@ public class Tennis implements TennisInterface {
             tennisFormatScore = TennisConstants.TEXT_FIFTEEN;
         } else if (points == TennisConstants.POINT_TWO) {
             tennisFormatScore = TennisConstants.TEXT_THIRTY;
+        }else if (points == TennisConstants.POINT_THREE) {
+            tennisFormatScore = TennisConstants.TEXT_FORTY;
         }
         return tennisFormatScore;
     }
