@@ -47,6 +47,8 @@ public class Tennis implements TennisInterface {
             score = TennisConstants.TEXT_DEUCE;
         } else if (isAdvantage()) {
             score = TennisConstants.TEXT_ADVANTAGE + TennisConstants.TEXT_COLON + getHighScorer();
+        } else if (isAnyPlayerBeyondForty() && pointDifference() > TennisConstants.POINT_ONE) {
+            score = TennisConstants.TEXT_WINNER + TennisConstants.TEXT_COLON + getHighScorer();
         } else {
             score = formatScore();
         }
