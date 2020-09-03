@@ -34,4 +34,11 @@ public class TennisTest {
     public void initialScoreShouldBeLoveAll() {
         Assert.assertEquals(LOVE + SPACE + ALL , tennis.getScore());
     }
+
+    @Test
+    public void firstPlayerScoreShouldIncreaseAfterWinningAPoint() {
+        tennis.increaseAPointForFirstPlayer();
+
+        Assert.assertEquals(1 , tennis.getFirstPlayerScore());
+    }
 }
